@@ -17,8 +17,18 @@
 
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
             <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                {{ config('app.name') }}
+                <form method="GET" action="/">
+                    <x-input id="zip" type="number" class="block mt-1 w-full" name="zip" :value="old('zip')" required autofocus />
+                </form>
             </div>
         </div>
+
+        @if ($data)
+            <div class="mb-4 font-medium text-sm text-green-600">
+                <div>Temperature: <?= $data['main']['temp'] ?></div>
+                <div>Description: <?= $data['weather'][0]['description'] ?></div>
+            </div>
+        @endif
+
     </div>
 </x-guest-layout>
